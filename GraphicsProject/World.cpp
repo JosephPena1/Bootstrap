@@ -8,9 +8,8 @@ void World::start()
 
 void World::update(float deltaTime)
 {
-	if (!m_started) {
+	if (!m_started)
 		start();
-	}
 
 	onUpdate(deltaTime);
 
@@ -31,18 +30,16 @@ void World::update(float deltaTime)
 	destroyList.clear();
 
 	//Update the entities
-	for (Entity* entity : entities) {
+	for (Entity* entity : entities)
 		entity->update(deltaTime);
-	}
 }
 
 void World::draw()
 {
 	onDraw();
 
-	for (Entity* entity : entities) {
+	for (Entity* entity : entities)
 		entity->draw();
-	}
 }
 
 void World::end()

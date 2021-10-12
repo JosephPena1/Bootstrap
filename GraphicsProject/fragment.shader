@@ -22,6 +22,21 @@ void main() {
 	vec3 kNormal = normalize(fNormal.xyz);
 	vec3 iNormal = normalize(iDirection);
 
+	/*if (iNormal.x > 0.5f)
+		iNormal.x = 1.0f;
+	else
+		iNormal.x = 0.0f;
+
+	if (iNormal.y > 0.5f)
+		iNormal.y = 1.0f;
+	else
+		iNormal.y = 0.0f;
+
+	if (iNormal.z > 0.5f)
+		iNormal.z = 1.0f;
+	else
+		iNormal.z = 0.0f;*/
+
 	//Calculate ambient color
 	vec3 ambientColor = (fColor.xyz + kAmbient) * iAmbient;
 
@@ -39,4 +54,11 @@ void main() {
 	vec3 specularColor = (fColor.xyz + kSpecular) * iSpecular * specularTerm;
 
 	pColor = vec4(ambientColor + diffuseColor + specularColor, 1.0f);
+
+	//Snow
+	if (kNormal.y > 1.0f)
+	{
+		vec4 red = vec4(1.0f, 0.0f, 0.0f, 1.0f);
+		pColor = red;
+	}
 }
