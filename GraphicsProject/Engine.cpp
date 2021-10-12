@@ -26,15 +26,12 @@ int Engine::run()
 	int exitCode = 0;
 
 	//Check for active world
-	if (!m_activeWorld) {
+	if (!m_activeWorld)
 		return exitCode = 1;
-	}
 
 	//Start
-	exitCode = start();
-	if (exitCode) {
+	if (exitCode = start() != 0)
 		return exitCode;
-	}
 
 	double deltaTime = 0.0f;
 	double timeOfPreviousUpdate = 0.0;
@@ -48,22 +45,16 @@ int Engine::run()
 		//Store the current time for the next loop
 		timeOfPreviousUpdate = timeOfCurrentUpdate;
 
-		exitCode = update(deltaTime);
-		if (exitCode) {
+		if (exitCode = update(deltaTime) != 0)
 			return exitCode;
-		}
 
-		exitCode = draw();
-		if (exitCode) {
+		if (exitCode = draw() != 0)
 			return exitCode;
-		}
 	}
 
 	//End
-	exitCode = end();
-	if (exitCode) {
+	if (exitCode = end() != 0)
 		return exitCode;
-	}
 
 	return 0;
 }
@@ -71,20 +62,21 @@ int Engine::run()
 int Engine::start()
 {
 	//Initialize GLFW
-	if (glfwInit() == GLFW_FALSE) {
+	if (glfwInit() == GLFW_FALSE)
 		return -1;
-	}
 
 	//Create a window
 	m_window = glfwCreateWindow(m_width, m_height, m_title, nullptr, nullptr);
-	if (!m_window) {
+	if (!m_window)
+	{
 		glfwTerminate();
 		return -2;
 	}
 	glfwMakeContextCurrent(m_window);
 
 	//Load OpenGL
-	if (ogl_LoadFunctions() == ogl_LOAD_FAILED) {
+	if (ogl_LoadFunctions() == ogl_LOAD_FAILED)
+	{
 		glfwDestroyWindow(m_window);
 		glfwTerminate();
 		return -3;
@@ -98,15 +90,10 @@ int Engine::start()
 	glEnable(GL_DEPTH_TEST);
 
 	//Initialize the shader
-	m_shader->loadShader(
-		aie::eShaderStage::VERTEX,
-		"vertex.shader"
-	);
-	m_shader->loadShader(
-		aie::eShaderStage::FRAGMENT,
-		"fragment.shader"
-	);
-	if (!m_shader->link()) {
+	m_shader->loadShader(aie::eShaderStage::VERTEX, "vertex.shader");
+	m_shader->loadShader(aie::eShaderStage::FRAGMENT, "fragment.shader");
+	if (!m_shader->link()) 
+	{
 		printf("Shader Error: %s\n", m_shader->getLastError());
 		return -10;
 	}

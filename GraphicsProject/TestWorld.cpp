@@ -26,7 +26,7 @@ void TestWorld::onStart()
 
 	//OBJ
 	m_obj = new OBJMesh();
-	m_obj->load("Lucy.obj");
+	m_obj->load("Bunny.obj");
 	m_obj->getTransform()->setScale(glm::vec3(0.5f));
 	add(m_obj);
 }
