@@ -12,14 +12,14 @@ Cube::Vertex* Cube::generateVertices(unsigned int& vertexCount, unsigned int& tr
 	//z downright
 	
 	//Set Vertex Positions
-	initializeCorner(vertices, vertexCount, 0, { 0.5f, 0.0f, 0.5 });//A
-	initializeCorner(vertices, vertexCount, 1, { 0.5f, 0.0f, -0.5 });//B
-	initializeCorner(vertices, vertexCount, 2, { -0.5f, 0.0f, 0.5 });//C
-	initializeCorner(vertices, vertexCount, 3, { -0.5f, 0.0f, -0.5 });//D
-	initializeCorner(vertices, vertexCount, 4, { -0.5f, 1.0f, 0.5 });//E, FLW
-	initializeCorner(vertices, vertexCount, 5, { -0.5f, 1.0f, -0.5 });//F FLW
-	initializeCorner(vertices, vertexCount, 6, { 0.5f, 1.0f, 0.5 });//G
-	initializeCorner(vertices, vertexCount, 7, {  0.5f, 1.0f, -0.5 });//H
+	initializeCorner(vertices, vertexCount, 0, { -0.5f, 0.0f, -0.5 });//A
+	initializeCorner(vertices, vertexCount, 1, { -0.5f, 0.0f, 0.5 });//B
+	initializeCorner(vertices, vertexCount, 2, { 0.5f, 0.0f, -0.5 });//C
+	initializeCorner(vertices, vertexCount, 3, { 0.5f, 0.0f, 0.5 });//D
+	initializeCorner(vertices, vertexCount, 4, { 0.5f, 1.0f, -0.5 });//E, FLW
+	initializeCorner(vertices, vertexCount, 5, { 0.5f, 1.0f, 0.5 });//F FLW
+	initializeCorner(vertices, vertexCount, 6, { -0.5f, 1.0f, -0.5 });//G
+	initializeCorner(vertices, vertexCount, 7, {  -0.5f, 1.0f, 0.5 });//H
 	
 
 	return vertices;
