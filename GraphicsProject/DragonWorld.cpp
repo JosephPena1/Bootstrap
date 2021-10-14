@@ -10,19 +10,29 @@ void DragonWorld::onStart()
 	add(m_camera);
 
 	//Light
-	m_light = new Light(
-		{ 1.0f, 1.0f, 1.0f },
-		{ 0.5f, 0.5f, 0.5f, 1.0f },
-		{ 1.0f, 1.0f, 1.0f, 1.0f },
+	m_light = new Light
+	(
+		{ 1.0f, 0.0f, 0.0f },
+		{ 0.2f, 0.2f, 0.2f, 1.0f },
+		{ 0.0f, 0.0f, 1.0f, 1.0f },
 		{ 1.0f, 1.0f, 1.0f, 1.0f }
 	);
-	m_light->setDirection({ -40.0f, -135.0f, 0.0f });
 	add(m_light);
+
+	Light* light1 = new Light
+	(
+		{ 0.0f, 0.0f, 1.0f },
+		{ 0.2f, 0.2f, 0.2f, 1.0f },
+		{ 1.0f, 0.0f, 0.0f, 1.0f },
+		{ 1.0f, 1.0f, 1.0f, 1.0f }
+	);
+	light1->setIndex(1);
+	add(light1);
 
 	//Dragon
 	m_dragon = new OBJMesh();
 	m_dragon->load("Bunny.obj");
-	m_dragon->getTransform()->setPosition({ 5.0f, 0.0f, 0.0f});
+	m_dragon->getTransform()->setPosition({ 0.0f, -2.0f, 0.0f});
 	m_dragon->getTransform()->setScale(glm::vec3(0.2f));
 	add(m_dragon);
 

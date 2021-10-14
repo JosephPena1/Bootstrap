@@ -6,7 +6,7 @@
 class Light : public Entity
 {
 public:
-	Light() {}
+	Light() : m_index(0) {}
 	Light(glm::vec3 direction, glm::vec4 ambient, glm::vec4 diffuse, glm::vec4 specular);
 	~Light() {}
 
@@ -25,7 +25,12 @@ public:
 	glm::vec4 getSpecular() { return m_specular; }
 	void setSpecular(glm::vec4 specular) { m_specular = specular; }
 
+	//Index
+	int getIndex() { return m_index; }
+	void setIndex(int index) { m_index = index; }
+
 private:
+	int m_index;
 	glm::vec4 m_ambient = glm::vec4(0.0f);
 	glm::vec4 m_diffuse = glm::vec4(0.0f);
 	glm::vec4 m_specular = glm::vec4(0.0f);
