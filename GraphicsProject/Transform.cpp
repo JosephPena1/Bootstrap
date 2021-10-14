@@ -85,7 +85,7 @@ glm::vec3 Transform::getRight()
 
 glm::vec3 Transform::getUp()
 {
-	return glm::vec3(0.0f, 1.0f, 0.0f);
+	return glm::cross(getRight(), getForward());
 }
 
 glm::vec3 Transform::getForward()
@@ -100,6 +100,18 @@ glm::vec3 Transform::getForward()
 		cos(pitchRadians) * sin(yawRadians)
 	);
 	return forward;
+}
+
+void Transform::setForward(glm::vec3 direction)
+{
+	//Ensure normalization
+	glm::normalize(direction);
+	//Find the angles
+	float pitch = asin(direction.y) * 57.2957795131f;
+	float yaw = atan2(-direction.x, direction.z) * 57.2957795131f;
+	float roll = 0.0f;
+	//Rotate
+	setRotation(pitch, yaw, roll);
 }
 
 glm::mat4 Transform::getLocalMatrix()

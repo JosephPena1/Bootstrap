@@ -31,6 +31,7 @@ public:
 	glm::vec3 getRight();
 	glm::vec3 getUp();
 	glm::vec3 getForward();
+	void setForward(glm::vec3 direction);
 
 	glm::mat4 getLocalMatrix();
 	glm::mat4 getGlobalMatrix();

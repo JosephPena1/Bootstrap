@@ -22,7 +22,7 @@ public:
 	// allow option to draw as patches for tessellation
 	void draw(bool usePatches = false);
 
-	Vertex* generateVertices(unsigned int& vertexCount, unsigned int& triCount) override { return nullptr; }
+	Vertex* generateVertices(unsigned int& vertexCount) override { return nullptr; }
 
 	// access to the filename that was loaded
 	const std::string& getFilename() const { return m_filename; }

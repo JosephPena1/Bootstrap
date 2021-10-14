@@ -20,17 +20,20 @@ void Mesh::onStart()
 {
 	assert(m_vertexArrayObject == 0);
 
-	//Generate buffer and array
+	//Generate vertex buffer and array
 	glGenBuffers(1, &m_vertexBufferObject);
 	glGenVertexArrays(1, &m_vertexArrayObject);
 
-	//Bind vertex array and vertex buffer
+	//Bind vertex array and buffer
 	glBindVertexArray(m_vertexArrayObject);
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferObject);
 
 	//Generate the vertices
-	unsigned int vertexCount;
-	Vertex* vertices = generateVertices(vertexCount, m_triCount);
+	unsigned int vertexCount = 0u;
+	Vertex* vertices = generateVertices(vertexCount);
+
+	//Set the triangle count
+	m_triCount = vertexCount / 3u;
 
 	//Fill vertex buffer
 	glBufferData(
@@ -102,12 +105,35 @@ void Mesh::onStart()
 	);
 	memoryPosition += sizeof(Vertex::color);
 
+	//Generate the indices
+	unsigned int indexCount = 0u;
+	unsigned int* indices = generateIndices(indexCount);
+
+	if (indexCount > 0u) {
+		//Generate index buffer
+		glGenBuffers(1, &m_indexBufferObject);
+
+		//Bind index buffer
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_indexBufferObject);
+
+		//Fill index buffer
+		glBufferData(
+			GL_ELEMENT_ARRAY_BUFFER,
+			indexCount * sizeof(unsigned int), indices, GL_STATIC_DRAW
+		);
+
+		//Set the triangle count
+		m_triCount = indexCount / 3u;
+	}
+
 	//Unbind buffer and array
 	glBindVertexArray(0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	//Deallocate vertices
+	//Deallocate vertices and indices
 	delete[] vertices;
+	delete[] indices;
 }
 
 void Mesh::onDraw()
@@ -126,5 +152,14 @@ void Mesh::onDraw()
 		glUniformMatrix4fv(modelMatrix, 1, false, &(getTransform()->getGlobalMatrix())[0][0]);
 
 	glBindVertexArray(m_vertexArrayObject);
-	glDrawArrays(GL_TRIANGLES, 0, m_triCount * 3);
+	if (m_indexBufferObject != 0)
+		glDrawElements(GL_TRIANGLES, 3 * m_triCount, GL_UNSIGNED_INT, 0);
+	else
+		glDrawArrays(GL_TRIANGLES, 0, m_triCount * 3);
+}
+
+unsigned int* Mesh::generateIndices(unsigned int& indexCount)
+{
+	indexCount = 0u;
+	return nullptr;
 }

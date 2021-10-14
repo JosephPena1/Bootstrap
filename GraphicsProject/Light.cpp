@@ -46,5 +46,5 @@ glm::vec3 Light::getDirection()
 
 void Light::setDirection(glm::vec3 direction)
 {
-	getTransform()->setRotation(direction);
+	getTransform()->setForward(direction);
 }

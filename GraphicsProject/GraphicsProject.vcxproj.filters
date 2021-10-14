@@ -135,6 +135,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <CopyFileToFolders Include="Lucy.obj">
+      <Filter>Resource Files</Filter>
+    </CopyFileToFolders>
     <CopyFileToFolders Include="Buddha.obj">
       <Filter>Resource Files</Filter>
     </CopyFileToFolders>
@@ -142,9 +145,6 @@
       <Filter>Resource Files</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="Dragon.obj">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="Lucy.obj">
       <Filter>Resource Files</Filter>
     </CopyFileToFolders>
   </ItemGroup>
