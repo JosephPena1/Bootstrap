@@ -11,54 +11,48 @@ void PlayerCamera::onUpdate(float deltaTime)
     int keyRight = GLFW_KEY_D;
     int keyUp = GLFW_KEY_E;
     int keyDown = GLFW_KEY_Q;
-    int keyRun = GLFW_KEY_LEFT_SHIFT;
+    int keySprint = GLFW_KEY_LEFT_SHIFT;
 
     //Get the direction vectors
     glm::vec3 right = getTransform()->getRight();
     glm::vec3 up = getTransform()->getUp();
     glm::vec3 forward = getTransform()->getForward();
-    glm::vec3 movementDir = { 0, 0, 0 };
+    float sprintSpeed = m_moveSpeed;
+
+    if (glfwGetKey(window, keySprint))
+        sprintSpeed *= 2;
 
     //Check input
     if (glfwGetKey(window, keyForward)) 
     {
         //Move forward
-        getTransform()->translate(forward * m_moveSpeed * (float)deltaTime);
-        movementDir = forward;
+        getTransform()->translate(forward * sprintSpeed * (float)deltaTime);
     }
     if (glfwGetKey(window, keyBack)) 
     {
         //Move back
-        getTransform()->translate(-forward * m_moveSpeed * (float)deltaTime);
-        movementDir = -forward;
+        getTransform()->translate(-forward * sprintSpeed * (float)deltaTime);
     }
     if (glfwGetKey(window, keyLeft)) 
     {
         //Move left
-        getTransform()->translate(-right * m_moveSpeed * (float)deltaTime);
-        movementDir = -right;
+        getTransform()->translate(-right * sprintSpeed * (float)deltaTime);
     }
     if (glfwGetKey(window, keyRight)) 
     {
         //Move right
-        getTransform()->translate(right * m_moveSpeed * (float)deltaTime);
-        movementDir = right;
+        getTransform()->translate(right * sprintSpeed * (float)deltaTime);
     }
     if (glfwGetKey(window, keyUp)) 
     {
         //Move up
-        getTransform()->translate(up * m_moveSpeed * (float)deltaTime);
-        movementDir = up;
+        getTransform()->translate(up * sprintSpeed * (float)deltaTime);
     }
     if (glfwGetKey(window, keyDown)) 
     {
         //Move down
-        getTransform()->translate(-up * m_moveSpeed * (float)deltaTime);
-        movementDir = -up;
+        getTransform()->translate(-up * sprintSpeed * (float)deltaTime);
     }
-    if (glfwGetKey(window, keyRun))
-        //Move faster
-        getTransform()->translate(movementDir * (m_moveSpeed * 2) * (float)deltaTime);
 
     //Get current mouse coordinates
     glfwGetCursorPos(window, &m_currentMouseX, &m_currentMouseY);
@@ -72,4 +66,5 @@ void PlayerCamera::onUpdate(float deltaTime)
     //Store previous mouse coordinates
     m_previousMouseX = m_currentMouseX;
     m_previousMouseY = m_currentMouseY;
+
 }

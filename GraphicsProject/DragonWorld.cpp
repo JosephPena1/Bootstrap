@@ -21,7 +21,7 @@ void DragonWorld::onStart()
 
 	Light* light1 = new Light
 	(
-		{ 0.0f, 0.0f, 1.0f },
+		{ 0.0f, -1.0f, 1.0f },
 		{ 0.2f, 0.2f, 0.2f, 1.0f },
 		{ 1.0f, 0.0f, 0.0f, 1.0f },
 		{ 1.0f, 1.0f, 1.0f, 1.0f }
