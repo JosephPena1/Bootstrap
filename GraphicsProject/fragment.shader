@@ -3,6 +3,7 @@
 in vec4 fPosition;
 in vec4 fNormal;
 in vec4 fColor;
+in vec2 fTexCoord;
 
 uniform vec3 kAmbient;
 uniform vec3 kDiffuse;
@@ -27,6 +28,7 @@ uniform vec3 iAmbient2;
 uniform vec3 iDiffuse2;
 uniform vec3 iSpecular2;
 
+uniform sampler2D diffuseTexture;
 uniform vec3 cameraPosition;
 
 out vec4 pColor;
@@ -95,7 +97,7 @@ void main() {
 	vec4 color2 = vec4(ambientColor2 + diffuseColor2 + specularColor2, 1.0f);
 
 	//Add the total color from all the lights
-	pColor = color0 + color1 + color2;
+	pColor = (color0 + color1 + color2);
 
 	//Snow
 	/*if (kNormal.y >= 0.5f)

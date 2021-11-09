@@ -39,6 +39,7 @@ void Light::onDraw()
 	int lightDirection = 0, lightAmbient = 0, 
 		lightDiffuse = 0, lightSpecular = 0;
 
+	//Set Light variables using strings
 	std::string str = ("iDirection" + std::to_string(m_index));
 	lightDirection = glGetUniformLocation(program, str.c_str());
 

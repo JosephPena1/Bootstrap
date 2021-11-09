@@ -12,10 +12,12 @@ uniform mat4 modelMatrix;
 out vec4 fPosition;
 out vec4 fNormal;
 out vec4 fColor;
+out vec2 fTexCoord;
 
 void main() {
 	fPosition = vPosition;
 	fNormal = modelMatrix * vNormal;
 	fColor = vColor;
+	fTexCoord = vTexCoord;
 	gl_Position = projectionViewMatrix * modelMatrix * vPosition;
 }

@@ -53,6 +53,9 @@ void PlayerCamera::onUpdate(float deltaTime)
         //Move down
         getTransform()->translate(-up * sprintSpeed * (float)deltaTime);
     }
+    //if ()
+    //    //Move forward
+    //    getTransform()->translate(forward * sprintSpeed * (float)deltaTime);
 
     //Get current mouse coordinates
     glfwGetCursorPos(window, &m_currentMouseX, &m_currentMouseY);

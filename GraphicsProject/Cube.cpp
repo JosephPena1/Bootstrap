@@ -7,8 +7,8 @@ Cube::Vertex* Cube::generateVertices(unsigned int& vertexCount)
 
 	vertices = new Vertex[vertexCount];
 
-	//x left
-	//z up
+	//x right
+	//z forward
 
 	//Bottom corners
 	vertices[0].position = {  0.5f, 0.0f, -0.5f, 1.0f };//BL
@@ -51,7 +51,7 @@ unsigned int* Cube::generateIndices(unsigned int& indexCount)
 	//Create a triangle in each row based on position
 	unsigned int* indices = new unsigned int[indexCount]
 	{
-		0, 1, 2, //Bottom plane
+		1, 2, 0, //Bottom plane
 		3, 0, 2,
 
 		1, 0, 5, //Left plane
