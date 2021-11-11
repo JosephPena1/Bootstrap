@@ -1,5 +1,4 @@
 #include "DragonWorld.h"
-#include "gl_core_4_4.h"
 
 void DragonWorld::onStart()
 {
@@ -9,9 +8,6 @@ void DragonWorld::onStart()
 	m_camera->getTransform()->rotate(-40.0f, 0.0f, 0.0f);
 	setCamera(m_camera);
 	add(m_camera);
-
-	if (!m_diffuseTexture.load("earth_diffuse.jpg"))
-		printf("Failed to load texture.\n");
 
 	//Lights
 	m_light1 = new Light
@@ -58,9 +54,9 @@ void DragonWorld::onStart()
 	add(m_cube);
 
 	//Quad
-	m_quad = new Quad();
-	m_quad->setColor({1,1,1,1});
-	m_quad->getTransform()->setPosition({2,0,0});
+	m_quad = new Quad("earth_diffuse.jpg", { 0.25f, 0.25f, 0.25f, 1 });
+	m_quad->getTransform()->setRotation({ 0,90,0 });
+	m_quad->getTransform()->setPosition({0,-2,3});
 	add(m_quad);
 }
 
@@ -72,6 +68,7 @@ void DragonWorld::onEnd()
 	destroy(m_light3);
 	destroy(m_bunny);
 	destroy(m_cube);
+	destroy(m_quad);
 }
 
 void DragonWorld::onUpdate(float deltaTime)
@@ -84,22 +81,4 @@ void DragonWorld::onUpdate(float deltaTime)
 	m_light1->getTransform()->setRotation({ 0, m_light1->getTransform()->getRotation().y + m_lightRotationSpeed, 0 });
 	m_light2->getTransform()->setRotation({ 0, m_light2->getTransform()->getRotation().y + m_lightRotationSpeed, 0 });
 	m_light3->getTransform()->setRotation({ 0, m_light3->getTransform()->getRotation().y + m_lightRotationSpeed, 0 });
-}
-
-void DragonWorld::onDraw()
-{
-	int program = -1;
-	glGetIntegerv(GL_CURRENT_PROGRAM, &program);
-
-	if (program == -1)
-		printf("No shader bound.\n");
-
-	int diffuseTextureUniform = glGetUniformLocation(program, "diffuseTexture");
-	if (diffuseTextureUniform >= 0)
-		glUniform1i(diffuseTextureUniform, 0);
-
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, m_diffuseTexture.getHandle());
-
-	m_quad->draw();
 }

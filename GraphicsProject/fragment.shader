@@ -28,8 +28,8 @@ uniform vec3 iAmbient2;
 uniform vec3 iDiffuse2;
 uniform vec3 iSpecular2;
 
-uniform sampler2D diffuseTexture;
 uniform vec3 cameraPosition;
+uniform sampler2D diffuseTexture;
 
 out vec4 pColor;
 
@@ -96,6 +96,8 @@ void main() {
 
 	vec4 color2 = vec4(ambientColor2 + diffuseColor2 + specularColor2, 1.0f);
 
+	vec4 texColor = fColor * texture(diffuseTexture, fTexCoord);
+
 	//Add the color from every light
-	pColor = (color0 + color1 + color2) * texture(diffuseTexture, fTexCoord);
+	pColor = (color0 + color1 + color2) + texColor;
 }

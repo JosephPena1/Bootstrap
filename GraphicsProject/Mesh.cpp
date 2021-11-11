@@ -109,7 +109,8 @@ void Mesh::onStart()
 	unsigned int indexCount = 0u;
 	unsigned int* indices = generateIndices(indexCount);
 
-	if (indexCount > 0u) {
+	if (indexCount > 0u)
+	{
 		//Generate index buffer
 		glGenBuffers(1, &m_indexBufferObject);
 
@@ -141,7 +142,8 @@ void Mesh::onDraw()
 	int program = -1;
 	glGetIntegerv(GL_CURRENT_PROGRAM, &program);
 
-	if (program == -1) {
+	if (program == -1)
+	{
 		printf("No shader bound!\n");
 		return;
 	}
