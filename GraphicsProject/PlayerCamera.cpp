@@ -1,5 +1,10 @@
 #include "PlayerCamera.h"
 #include "GLFW/glfw3.h"
+#include <iostream>
+
+//For zooming in & out
+void scroll_callback(GLFWwindow* window, double xPos, double yPos);
+float mouseWheel;
 
 void PlayerCamera::onUpdate(float deltaTime)
 {
@@ -12,8 +17,6 @@ void PlayerCamera::onUpdate(float deltaTime)
     int keyUp = GLFW_KEY_E;
     int keyDown = GLFW_KEY_Q;
     int keySprint = GLFW_KEY_LEFT_SHIFT;
-    //int scrollWheel = ;
-    //glfwSetScrollCallback;
 
     //Get the direction vectors
     glm::vec3 right = getTransform()->getRight();
@@ -25,39 +28,41 @@ void PlayerCamera::onUpdate(float deltaTime)
         sprintSpeed *= 2;
 
     //Check input
-    if (glfwGetKey(window, keyForward)) 
-    {
-        //Move forward
+    //Move forward
+    if (glfwGetKey(window, keyForward))
         getTransform()->translate(forward * sprintSpeed * (float)deltaTime);
-    }
-    if (glfwGetKey(window, keyBack)) 
-    {
-        //Move back
+
+    //Move back
+    if (glfwGetKey(window, keyBack))
         getTransform()->translate(-forward * sprintSpeed * (float)deltaTime);
-    }
-    if (glfwGetKey(window, keyLeft)) 
-    {
-        //Move left
+
+    //Move left
+    if (glfwGetKey(window, keyLeft))
         getTransform()->translate(-right * sprintSpeed * (float)deltaTime);
-    }
-    if (glfwGetKey(window, keyRight)) 
-    {
-        //Move right
+
+    //Move right
+    if (glfwGetKey(window, keyRight))
         getTransform()->translate(right * sprintSpeed * (float)deltaTime);
-    }
-    if (glfwGetKey(window, keyUp)) 
-    {
-        //Move up
+
+    //Move up
+    if (glfwGetKey(window, keyUp))
         getTransform()->translate(up * sprintSpeed * (float)deltaTime);
-    }
-    if (glfwGetKey(window, keyDown)) 
-    {
-        //Move down
+
+    //Move down
+    if (glfwGetKey(window, keyDown))
         getTransform()->translate(-up * sprintSpeed * (float)deltaTime);
+
+    //Zoom in & out
+    glfwSetScrollCallback(window, scroll_callback);
+    if (mouseWheel != 0)
+    {
+        float scrollDirection = (mouseWheel == 1) ? sprintSpeed : -sprintSpeed;
+        scrollDirection *= 6;
+
+        //Move forward
+        getTransform()->translate(forward * scrollDirection * (float)deltaTime);
+        mouseWheel = 0;
     }
-    //if (glfwGetKey(window, scrollWheel))
-    //    //Move forward
-    //    getTransform()->translate(forward * sprintSpeed * (float)deltaTime);
 
     //Get current mouse coordinates
     glfwGetCursorPos(window, &m_currentMouseX, &m_currentMouseY);
@@ -71,5 +76,10 @@ void PlayerCamera::onUpdate(float deltaTime)
     //Store previous mouse coordinates
     m_previousMouseX = m_currentMouseX;
     m_previousMouseY = m_currentMouseY;
+}
 
+//Gives back the y value of the scrollWheel
+void scroll_callback(GLFWwindow* window, double xPos, double yPos)
+{
+    mouseWheel = yPos;
 }
