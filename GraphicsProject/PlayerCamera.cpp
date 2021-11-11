@@ -16,6 +16,7 @@ void PlayerCamera::onUpdate(float deltaTime)
     int keyUp = GLFW_KEY_E;
     int keyDown = GLFW_KEY_Q;
     int keySprint = GLFW_KEY_LEFT_SHIFT;
+    int keySlow = GLFW_KEY_LEFT_CONTROL;
 
     //Get the direction vectors
     glm::vec3 right = getTransform()->getRight();
@@ -26,6 +27,9 @@ void PlayerCamera::onUpdate(float deltaTime)
     //Checks if sprinting
     if (glfwGetKey(window, keySprint))
         sprintSpeed *= 2;
+
+    if (glfwGetKey(window, keySlow))
+        sprintSpeed /= 2;
 
     //Check input
     //Move forward
@@ -73,8 +77,17 @@ void PlayerCamera::onUpdate(float deltaTime)
     if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_2)) {
         float pitch = m_lookSpeed * (m_currentMouseY - m_previousMouseY);
         float yaw = m_lookSpeed * (m_currentMouseX - m_previousMouseX);
+        if ((getTransform()->getRotation().x >= 90 && pitch > 0) || (getTransform()->getRotation().x <= -90 && pitch < 0))
+            pitch = 0.0f;
+
         getTransform()->rotate(-pitch, yaw, 0.0f);
+
+        if (getTransform()->getRotation().x >= 90)
+            getTransform()->rotate(pitch,0,0);
+        if (getTransform()->getRotation().x <= -90)
+            getTransform()->rotate(pitch,0,0);
     }
+
     //Store previous mouse coordinates
     m_previousMouseX = m_currentMouseX;
     m_previousMouseY = m_currentMouseY;

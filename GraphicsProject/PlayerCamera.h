@@ -19,4 +19,3 @@ private:
 	double m_previousMouseX = 0.0;
 	double m_previousMouseY = 0.0;
 };
-
