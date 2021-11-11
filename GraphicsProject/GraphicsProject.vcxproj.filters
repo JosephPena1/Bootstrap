@@ -148,4 +148,9 @@
       <Filter>Resource Files</Filter>
     </CopyFileToFolders>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="earth_diffuse.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>
