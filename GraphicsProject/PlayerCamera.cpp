@@ -1,6 +1,5 @@
 #include "PlayerCamera.h"
 #include "GLFW/glfw3.h"
-#include <iostream>
 
 //For zooming in & out
 void scroll_callback(GLFWwindow* window, double xPos, double yPos);
