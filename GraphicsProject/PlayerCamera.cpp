@@ -77,8 +77,6 @@ void PlayerCamera::onUpdate(float deltaTime)
     if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_2)) {
         float pitch = m_lookSpeed * (m_currentMouseY - m_previousMouseY);
         float yaw = m_lookSpeed * (m_currentMouseX - m_previousMouseX);
-        if ((getTransform()->getRotation().x >= 90 && pitch > 0) || (getTransform()->getRotation().x <= -90 && pitch < 0))
-            pitch = 0.0f;
 
         getTransform()->rotate(-pitch, yaw, 0.0f);
 
