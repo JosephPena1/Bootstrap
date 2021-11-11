@@ -23,6 +23,7 @@ void PlayerCamera::onUpdate(float deltaTime)
     glm::vec3 forward = getTransform()->getForward();
     float sprintSpeed = m_moveSpeed;
 
+    //Checks if sprinting
     if (glfwGetKey(window, keySprint))
         sprintSpeed *= 2;
 
@@ -55,11 +56,13 @@ void PlayerCamera::onUpdate(float deltaTime)
     glfwSetScrollCallback(window, scroll_callback);
     if (mouseWheel != 0)
     {
-        float scrollDirection = (mouseWheel == 1) ? sprintSpeed : -sprintSpeed;
-        scrollDirection *= 6;
+        if (getFieldOfView() >= 1.0f && getFieldOfView() <= 45.0f)
+            setFieldOfView(getFieldOfView() - mouseWheel);
+        if (getFieldOfView() < 1.0f)
+            setFieldOfView(1.0f);
+        if (getFieldOfView() > 45.0f)
+            setFieldOfView(45.0f);
 
-        //Move forward
-        getTransform()->translate(forward * scrollDirection * (float)deltaTime);
         mouseWheel = 0;
     }
 
