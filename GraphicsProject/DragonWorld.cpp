@@ -56,6 +56,12 @@ void DragonWorld::onStart()
 	m_cube->setColor({ 0.6f, 0.2f, 0.4f, 1.0f });
 	m_cube->getTransform()->scale(glm::vec3(1.0f));
 	add(m_cube);
+
+	//Quad
+	m_quad = new Quad();
+	m_quad->setColor({1,1,1,1});
+	m_quad->getTransform()->setPosition({2,0,0});
+	add(m_quad);
 }
 
 void DragonWorld::onEnd()
@@ -70,7 +76,7 @@ void DragonWorld::onEnd()
 
 void DragonWorld::onUpdate(float deltaTime)
 {
-	//Rotates the lights in the scene
+	//Rotates every light in the scene
 	m_lightRotationSpeed = 1.0f;
 	if (m_light1->getTransform()->getRotation().y >= 360)
 		m_lightRotationSpeed = -360.0f;
@@ -95,4 +101,5 @@ void DragonWorld::onDraw()
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, m_diffuseTexture.getHandle());
 
+	m_quad->draw();
 }

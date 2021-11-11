@@ -12,6 +12,8 @@ void PlayerCamera::onUpdate(float deltaTime)
     int keyUp = GLFW_KEY_E;
     int keyDown = GLFW_KEY_Q;
     int keySprint = GLFW_KEY_LEFT_SHIFT;
+    //int scrollWheel = ;
+    //glfwSetScrollCallback;
 
     //Get the direction vectors
     glm::vec3 right = getTransform()->getRight();
@@ -53,7 +55,7 @@ void PlayerCamera::onUpdate(float deltaTime)
         //Move down
         getTransform()->translate(-up * sprintSpeed * (float)deltaTime);
     }
-    //if ()
+    //if (glfwGetKey(window, scrollWheel))
     //    //Move forward
     //    getTransform()->translate(forward * sprintSpeed * (float)deltaTime);
 

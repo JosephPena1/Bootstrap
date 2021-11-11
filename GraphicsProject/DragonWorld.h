@@ -5,6 +5,7 @@
 #include "OBJMesh.h"
 #include "Cube.h"
 #include "Texture.h"
+#include "Quad.h"
 
 class DragonWorld : public World
 {
@@ -24,5 +25,6 @@ private:
 
 	OBJMesh* m_bunny = nullptr;
 	Cube* m_cube = nullptr;
+	Quad* m_quad = nullptr;
 	aie::Texture m_diffuseTexture;
 };
