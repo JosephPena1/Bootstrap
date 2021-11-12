@@ -74,7 +74,8 @@ void PlayerCamera::onUpdate(float deltaTime)
     glfwGetCursorPos(window, &m_currentMouseX, &m_currentMouseY);
 
     //Turn the camera based on the change in mouse position (delta mouse)
-    if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_2)) {
+    if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_2))
+    {
         float pitch = m_lookSpeed * (m_currentMouseY - m_previousMouseY);
         float yaw = m_lookSpeed * (m_currentMouseX - m_previousMouseX);
 
