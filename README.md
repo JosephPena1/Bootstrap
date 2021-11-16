@@ -8,6 +8,7 @@
  - Open "GraphicsProject" and double-click "GraphicsProject.exe" to play the game
 
 <br/>
+
 #### Controls:
 
 Keyboard:
