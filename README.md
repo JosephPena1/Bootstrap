@@ -5,10 +5,9 @@
 #### Downloading:
  - Click [here](https://github.com/JosephPena1/Bootstrap/releases/download/0.22/GraphicsProject.zip) to download the game
  - After downloading right click the .zip file and "Extract to GraphicsProject/"
- - Open "PhysicsProject" and double-click "PhysicsProject.exe" to play the game
+ - Open "GraphicsProject" and double-click "GraphicsProject.exe" to play the game
 
 <br/>
-
 #### Controls:
 
 Keyboard:
