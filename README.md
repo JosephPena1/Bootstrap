@@ -1,6 +1,7 @@
 ### 2D Graphics:
 
-##### *This uses [Bootstrap](https://github.com/AcademyOfInteractiveEntertainment/aieBootstrap)*
+##### This project will show off graphics such as lights, textures, and objects.
+##### *The project uses [Bootstrap](https://github.com/AcademyOfInteractiveEntertainment/aieBootstrap)*
 
 #### Downloading:
  - Click [here](https://github.com/JosephPena1/Bootstrap/releases/download/0.22/GraphicsProject.zip) to download the game
