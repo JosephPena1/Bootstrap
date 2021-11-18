@@ -157,21 +157,16 @@ void OBJMesh::onUpdate(float deltaTime)
 	//Rotation
 	getTransform()->rotate({ 0,0.2f,0 });
 
-	float FloatingSpeed = 0.2f;
 	//Up and down
-	if (!m_goingDown)
-	{
-		getTransform()->translate({ 0, -FloatingSpeed * deltaTime, 0 });
-		m_height -= FloatingSpeed * deltaTime;
-		m_goingDown = (m_height <= -1);
-	}
+	float FloatingSpeed = (!m_goingDown) ? -0.2f : 0.2f;
 
-	if (m_goingDown)
-	{
-		getTransform()->translate({ 0, FloatingSpeed * deltaTime, 0 });
-		m_height += FloatingSpeed * deltaTime;
-		m_goingDown = !(m_height >= 0);
-	}
+	getTransform()->translate({ 0, FloatingSpeed * deltaTime, 0 });
+	m_height += FloatingSpeed * deltaTime;
+
+	if (m_height <= -1)
+		m_goingDown = true;
+	if (m_height >= 0)
+		m_goingDown = false;
 
 	Entity::onUpdate(deltaTime);
 }

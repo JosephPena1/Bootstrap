@@ -37,9 +37,5 @@ private:
 	glm::vec4 m_specular = glm::vec4(0.0f);
 
 	float m_lightRotationSpeed = 0.0f;
-	float m_lightChangeSpeed = 0.0f;
-	bool m_isRed = false;
-	bool m_isGreen = false;
-	bool m_isBlue = false;
 };
 

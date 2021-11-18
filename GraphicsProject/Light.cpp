@@ -9,10 +9,6 @@ Light::Light(glm::vec3 direction, glm::vec4 ambient, glm::vec4 diffuse, glm::vec
 	m_ambient = ambient;
 	m_diffuse = diffuse;
 	m_specular = specular;
-
-	m_isRed = (getDiffuse().x == 1);
-	m_isGreen = (getDiffuse().y == 1);
-	m_isBlue = (getDiffuse().z == 1);
 }
 
 void Light::onUpdate(float deltaTime)
