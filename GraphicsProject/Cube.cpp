@@ -1,5 +1,29 @@
 #include "Cube.h"
 
+void Cube::onUpdate(float deltaTime)
+{
+	//Rotation
+	getTransform()->rotate({0,0.2f,0});
+
+	//Up and down
+	float FloatingSpeed = 0.2f;
+	if (!m_goingDown)
+	{
+		getTransform()->translate({ 0, -FloatingSpeed * deltaTime, 0 });
+		m_height -= FloatingSpeed * deltaTime;
+		m_goingDown = (m_height <= -1);
+	}
+
+	if (m_goingDown)
+	{
+		getTransform()->translate({ 0, FloatingSpeed * deltaTime, 0 });
+		m_height += FloatingSpeed * deltaTime;
+		m_goingDown = !(m_height >= 0);
+	}
+
+	Entity::onUpdate(deltaTime);
+}
+
 Cube::Vertex* Cube::generateVertices(unsigned int& vertexCount)
 {
 	Vertex* vertices = nullptr;

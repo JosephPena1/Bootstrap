@@ -11,7 +11,6 @@ class DragonWorld : public World
 public:
 	void onStart() override;
 	void onEnd() override;
-	void onUpdate(float deltaTime) override;
 
 private:
 	PlayerCamera* m_camera = nullptr;
@@ -19,7 +18,6 @@ private:
 	Light* m_light1 = nullptr;
 	Light* m_light2 = nullptr;
 	Light* m_light3 = nullptr;
-	float m_lightRotationSpeed = 0.0f;
 
 	OBJMesh* m_bunny = nullptr;
 	Cube* m_cube = nullptr;

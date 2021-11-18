@@ -70,15 +70,3 @@ void DragonWorld::onEnd()
 	destroy(m_cube);
 	destroy(m_quad);
 }
-
-void DragonWorld::onUpdate(float deltaTime)
-{
-	//Rotates every light in the scene
-	m_lightRotationSpeed = 1.0f;
-	if (m_light1->getTransform()->getRotation().y >= 360)
-		m_lightRotationSpeed = -360.0f;
-
-	m_light1->getTransform()->setRotation({ 0, m_light1->getTransform()->getRotation().y + m_lightRotationSpeed, 0 });
-	m_light2->getTransform()->setRotation({ 0, m_light2->getTransform()->getRotation().y + m_lightRotationSpeed, 0 });
-	m_light3->getTransform()->setRotation({ 0, m_light3->getTransform()->getRotation().y + m_lightRotationSpeed, 0 });
-}

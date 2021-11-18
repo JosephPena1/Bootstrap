@@ -18,6 +18,7 @@ public:
 	// will fail if a mesh has already been loaded in to this instance
 	bool load(const char* filename, bool loadTextures = true, bool flipTextureV = false);
 
+	void onUpdate(float deltaTime) override;
 	void onDraw() override;
 	// allow option to draw as patches for tessellation
 	void draw(bool usePatches = false);
@@ -34,7 +35,8 @@ public:
 private:
 	void calculateTangents(std::vector<Mesh::Vertex>& vertices, const std::vector<unsigned int>& indices);
 
-	struct MeshChunk {
+	struct MeshChunk
+	{
 		unsigned int	vao, vbo, ibo;
 		unsigned int	indexCount;
 		int				materialID;
@@ -43,4 +45,7 @@ private:
 	std::string				m_filename;
 	std::vector<MeshChunk>	m_meshChunks;
 	std::vector<Material>	m_materials;
+
+	bool m_goingDown = false;
+	float m_height = 0.0f;
 };

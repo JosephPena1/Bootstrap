@@ -7,6 +7,8 @@ public:
 	Cube() : Mesh() {}
 	~Cube() {}
 
+	void onUpdate(float deltaTime) override;
+
 	Vertex* generateVertices(unsigned int& vertexCount) override;
 	unsigned int* generateIndices(unsigned int& indexCount) override;
 
@@ -18,5 +20,7 @@ private:
 
 private:
 	glm::vec4 m_color = glm::vec4(1.0f);
+	bool m_goingDown = false;
+	float m_height = 0.0f;
 
 };

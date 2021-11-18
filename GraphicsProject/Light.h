@@ -10,6 +10,7 @@ public:
 	Light(glm::vec3 direction, glm::vec4 ambient, glm::vec4 diffuse, glm::vec4 specular);
 	~Light() {}
 
+	void onUpdate(float deltaTime) override;
 	void onDraw() override;
 
 	//Light Direction
@@ -34,5 +35,11 @@ private:
 	glm::vec4 m_ambient = glm::vec4(0.0f);
 	glm::vec4 m_diffuse = glm::vec4(0.0f);
 	glm::vec4 m_specular = glm::vec4(0.0f);
+
+	float m_lightRotationSpeed = 0.0f;
+	float m_lightChangeSpeed = 0.0f;
+	bool m_isRed = false;
+	bool m_isGreen = false;
+	bool m_isBlue = false;
 };
 
