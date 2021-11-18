@@ -9,13 +9,15 @@ Quad::Quad(const char* fileName, glm::vec4 color) : Quad::Quad()
 
 void Quad::onStart()
 {
+	//Loads the given File
 	Mesh::onStart();
 	if (!m_texture.load(m_file))
-		printf("Failed to load texture.\n");
+		printf("Failed to load file.\n");
 }
 
 void Quad::onDraw()
 {
+	//Sets the texture
 	int program = -1;
 	glGetIntegerv(GL_CURRENT_PROGRAM, &program);
 
@@ -45,6 +47,7 @@ Quad::Vertex* Quad::generateVertices(unsigned int& vertexCount)
 	vertices[2].position = { -0.5f, 0.0f, -0.5f, 1.0f };
 	vertices[3].position = {  0.5f, 0.0f, -0.5f, 1.0f };
 
+	//Set coordinates for texture
 	vertices[0].texCoord = { 0.0f, 0.0f };
 	vertices[1].texCoord = { 0.0f, 1.0f };
 	vertices[2].texCoord = { 1.0f, 0.0f };
